@@ -1,0 +1,18 @@
+.visits-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.visit-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.visit-item:last-child {
+  border-bottom: none;
+}
+
+.visit-date {
+  color: #666;
+  font-size: 0.9em;
+}
