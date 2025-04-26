@@ -3,12 +3,12 @@
   "name": "Site Stats",
   "version": "1.0",
   "description": "A Chrome Extension that shows current website stats",
-  "permissions": ["storage", "tabs"],
+  "permissions": ["sidePanel", "storage", "tabs"],
   "background": {
     "service_worker": "background.js"
   },
-  "action": {
-    "default_popup": "popup.html"
+  "side_panel": {
+    "default_path": "popup.html"
   },
   "content_scripts": [
     {
