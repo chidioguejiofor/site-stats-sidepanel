@@ -25,8 +25,8 @@ chrome.runtime.onMessage.addListener((request) => {
       action: "pageDataCollected",
       data: pageData,
     });
-    return true;
   }
+  return true;
 });
 
 // Collect data when page loads

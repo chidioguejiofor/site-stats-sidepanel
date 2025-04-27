@@ -1,5 +1,5 @@
 from typing import Union
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from fastapi import FastAPI
 from datetime import datetime
 
@@ -15,7 +15,7 @@ class PageVisit(BaseModel):
 
 
 @app.get('/')
-def save_page_visit():
+def retreive_root():
     return {'Hello': 'World'}
 
 @app.post('/api/page/visits', status_code=201)
@@ -33,8 +33,10 @@ def return_page_visits(url: str):
 
 
 @app.get('/api/page/current/metrics')
-def return_page_visits(url: str):
+def return_current_page_metris(url: str):
     filtered = [visit for visit in db if visit['url'] == url ] 
 
+    if len(filtered) == 0:
+        return []
     return filtered[  len(filtered)-1] 
 

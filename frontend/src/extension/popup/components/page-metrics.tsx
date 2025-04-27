@@ -7,7 +7,7 @@ type PageMetrics = {
   lastVisit: Date;
 };
 
-export function PageMetrics(props: PageMetrics) {
+export function PageMetrics(props: Partial<PageMetrics>) {
   const { linkCount, wordCount, imageCount, lastVisit } = props;
   return (
     <div className="container">
@@ -27,7 +27,7 @@ export function PageMetrics(props: PageMetrics) {
         </div>
         <div className="metric">
           <span>Last visited:</span>
-          <span>{lastVisit.toLocaleString()}</span>
+          <span>{lastVisit?.toLocaleString()}</span>
         </div>
       </div>
     </div>
