@@ -1,15 +1,13 @@
-from main import app
-from fastapi.testclient import TestClient
-
-client = TestClient(app)
+import os
+from config import DATABASE_URL
 
 
-def test_root():
+def test_root(client):
     response = client.get('/')
     assert response.json() == {'Hello': "World"}
 
 
-def test_save_page_visit():
+def test_save_page_visit(client):
     response = client.post('/api/page/visits', json={
         'url': 'http://dev.to/chidioguejiofor',
         'link_count': 10,
@@ -20,7 +18,7 @@ def test_save_page_visit():
     assert response.status_code == 201
 
 
-def test_retrieve_visits():
+def test_retrieve_visits(client):
 
     new_page_url =  'http://visit_to_retrieve.to/chidioguejiofor'
     client.post('/api/page/visits', json={
@@ -41,14 +39,13 @@ def test_retrieve_visits():
     response = client.get(f'/api/page/visits?url={new_page_url}')
     res_data = response.json()
 
-    print(res_data)
     assert len(res_data) == 1
     page_visit = res_data[0]
     assert page_visit is not None
     assert response.status_code == 200
 
-def test_current_page_metrics():
 
+def test_current_page_metrics(client):
     new_page_url =  'http://latest_page_metrics'
     client.post('/api/page/visits', json={
         'url':new_page_url,

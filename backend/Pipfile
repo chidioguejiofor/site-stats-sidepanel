@@ -4,10 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-fastapi = "*"
 httpx = "*"
 pytest = "*"
 uvicorn = {extras = ["standard"], version = "*"}
+fastapi = {extras = ["all"], version = "*"}
+sqlalchemy = "*"
+python-dotenv = "*"
+psycopg2-binary = "*"
+
+[scripts]
+test = "env ENV=test pytest -s"
+dev = "uvicorn main:app --reload"
 
 [dev-packages]
 pytest = "*"
