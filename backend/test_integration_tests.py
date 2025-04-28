@@ -14,7 +14,12 @@ def test_save_page_visit(client):
         'word_count': 200,
         'image_count': 5
     })
-    assert response.json() == {'status': 'ok'}
+    res_data = response.json()
+    assert res_data['status'] == 'ok'
+    assert isinstance(res_data['data'], object)
+    assert res_data['data']['link_count'] == 10
+    assert res_data['data']['word_count'] == 200
+    assert res_data['data']['image_count'] == 5
     assert response.status_code == 201
 
 
@@ -61,6 +66,16 @@ def test_current_page_metrics(client):
     assert isinstance(res_data, dict)
     res_data['url'] == new_page_url
     res_data['word_count'] == 66
+
+def test_current_page_metrics_should_return_404_when_url_is_not_found(client):
+    new_page_url =  'http://some-uknown-url.com'
+
+    response = client.get(f'/api/page/current/metrics?url={new_page_url}')
+    res_data = response.json()
+
+    assert response.status_code == 404
+    assert res_data['message'] == 'No visit for that url'
+
 
 
 
