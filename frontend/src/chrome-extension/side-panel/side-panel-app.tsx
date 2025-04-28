@@ -2,7 +2,7 @@ import { PageMetrics } from "./components/page-metrics";
 import { LastVisitDetail } from "./components/visits-history";
 import { usePageVisits } from "../../hooks/use-page-visits";
 
-export function PopupApp() {
+export function SidePanelApp() {
   const { loading, pageMetrics, error, visitHistory } = usePageVisits();
 
   if (loading) {

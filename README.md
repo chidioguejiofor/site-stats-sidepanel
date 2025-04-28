@@ -83,6 +83,15 @@ To install the plugin take the following steps:
 1. Open Google Chrome
 2. Open any web page(eg https://www.uhcprovider.com/)
 3. Click on the elipsis on the top right 
-4. Click on Extensions > Manage Extension
-5. 
+4. Click on Extensions > Manage Extension > Load Extension
+5. Select the dist folder
 
+Now you should be able to see the side-panel
+
+## Notes on Testing
+
+You can test the backend API by running:
+
+```bash
+pipenv run test
+```

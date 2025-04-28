@@ -8,9 +8,15 @@ export default defineConfig({
     rollupOptions: {
       input: {
         website: resolve(__dirname, "index.html"),
-        popup: resolve(__dirname, "popup.html"),
-        background: resolve(__dirname, "src/extension/background/index.ts"), // Background script
-        contentScript: resolve(__dirname, "src/extension/content/index.ts"), // Content script
+        chromeExtension: resolve(__dirname, "chrome-extension.html"),
+        background: resolve(
+          __dirname,
+          "src/chrome-extension/background/index.ts"
+        ), // Background script
+        contentScript: resolve(
+          __dirname,
+          "src/chrome-extension/content/index.ts"
+        ), // Content script
       },
       output: {
         entryFileNames: (assetInfo) => {
@@ -23,10 +29,12 @@ export default defineConfig({
     outDir: "dist",
   },
   define: {
-    'process.env.REACT_APP_SITE_STATS_API_HOST': JSON.stringify(process.env.VITE_SITE_STATS_API_HOST)
+    "process.env.REACT_APP_SITE_STATS_API_HOST": JSON.stringify(
+      process.env.VITE_SITE_STATS_API_HOST
+    ),
   },
   server: {
-    host: '0.0.0.0', // This allows Vite to be accessible outside the container
+    host: "0.0.0.0", // This allows Vite to be accessible outside the container
     port: 5173,
   },
 });
