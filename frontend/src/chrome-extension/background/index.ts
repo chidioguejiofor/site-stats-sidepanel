@@ -22,8 +22,7 @@ chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
   if (request.action === "pageDataCollected") {
     sendToBackend(request.data).then(() => {
       sendResponse({ status: "received" });
-      console.log({ _ });
-      chrome.tabs.sendMessage(1, { action: "dataSaved" });
+      chrome.tabs.sendMessage(1, { action: "DATA_SAVED" });
     });
   }
   return true;

@@ -8,6 +8,14 @@ See the image below
 ![alt text](/project-demo.png)
 
 
+
+## Tech Setup
+The `backend` folder contains all the FastAPI backend code that implements API endpoints for the application
+
+The `frontend` contains a React viteJS setup that puts a `chrome-extension` and `website` in the project. The idea here is to allow the developers build the chrome extension and their website in the same project. This can make the development easy
+
+You can also run the entire application using Docker.
+
 ## Pre-requisite
 
 The backend project depends on `direnv` to load env variables. 
