@@ -1,4 +1,7 @@
+// import { SITE_STATS_API_HOST } from "./config";
 import { PageData } from "../../types";
+
+const SITE_STATS_API_HOST = process.env.REACT_APP_SITE_STATS_API_HOST || "";
 
 chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
 
@@ -19,7 +22,7 @@ chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
   if (request.action === "pageDataCollected") {
     sendToBackend(request.data).then(() => {
       sendResponse({ status: "received" });
-      console.log({_})
+      console.log({ _ });
       chrome.tabs.sendMessage(1, { action: "dataSaved" });
     });
   }
@@ -30,7 +33,7 @@ chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
 async function sendToBackend(pageData: PageData) {
   //  Make API call to save the data
   try {
-    const response = await fetch("http://localhost:8000/api/page/visits", {
+    const response = await fetch(`${SITE_STATS_API_HOST}/api/page/visits`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +49,6 @@ async function sendToBackend(pageData: PageData) {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-   
 
     console.log("Page data saved successfully");
   } catch (error) {

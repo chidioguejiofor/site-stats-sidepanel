@@ -22,4 +22,11 @@ export default defineConfig({
     },
     outDir: "dist",
   },
+  define: {
+    'process.env.REACT_APP_SITE_STATS_API_HOST': JSON.stringify(process.env.VITE_SITE_STATS_API_HOST)
+  },
+  server: {
+    host: '0.0.0.0', // This allows Vite to be accessible outside the container
+    port: 5173,
+  },
 });
