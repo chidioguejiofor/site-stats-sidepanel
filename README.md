@@ -60,17 +60,12 @@ pipenv run dev
 
 The following steps can be used to run the application using docker
 
-1. The `backend/.env.docker` file contains env variables that is used to run the backend in docker.
-Update these env variables with the correct values for your local env
-
-> Note that instead of using "localhost", you'll have to use "host.docker.internal"
-
-2. Start the entire application using the following command:
+1. Start the entire application using the following command:
 ```bash
-docker-compose up
+docker-compose up --build
 ```
 
-3. In another terminal copy the `dist` folder to `frontend/dist` using 
+2. In another terminal copy the `dist` folder to `frontend/dist` using 
 
 ```bash
 docker cp $(docker-compose ps -q frontend):/app/dist ./frontend
