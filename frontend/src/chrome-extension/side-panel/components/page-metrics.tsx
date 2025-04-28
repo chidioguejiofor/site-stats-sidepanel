@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 type PageMetrics = {
   linkCount: number;
   wordCount: number;
@@ -28,7 +30,10 @@ export function PageMetrics(props: PageMetrics) {
         <Metric label="Links:" value={linkCount} />
         <Metric label="Words:" value={wordCount} />
         <Metric label="Images:" value={imageCount} />
-        <Metric label="Last visited:" value={lastVisit.toLocaleString()} />
+        <Metric
+          label="Last visited:"
+          value={format(lastVisit, "dd MMM yyyy ")}
+        />
       </div>
     </div>
   );

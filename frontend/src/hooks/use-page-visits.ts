@@ -45,10 +45,9 @@ export const usePageVisits = () => {
 
       setVisitHistory(pageHistory);
       setLoading(false);
-    } catch (err) {
+    } catch {
       setLoading(false);
-      console.error("Error fetching data:", err);
-      setError("Failed to load data. Make sure the backend server is running.");
+      setError("Error while retrieving page data.");
     }
   }, []);
 

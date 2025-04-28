@@ -5,7 +5,7 @@ import { Spinner } from "./components/spinner";
 import EmptyStateWithRetry from "./components/empty-state";
 
 export function SidePanelApp() {
-  const { loading, pageMetrics, visitHistory, fetchCurrentTabData } =
+  const { loading, pageMetrics, error, visitHistory, fetchCurrentTabData } =
     usePageVisits();
 
   if (loading) {
@@ -19,7 +19,7 @@ export function SidePanelApp() {
   if (!pageMetrics) {
     return (
       <EmptyStateWithRetry
-        message="No Data for this page"
+        message={error || "No Data for this page"}
         onRetry={fetchCurrentTabData}
       />
     );
