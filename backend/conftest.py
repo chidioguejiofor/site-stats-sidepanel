@@ -2,21 +2,11 @@
 import pytest
 from fastapi.testclient import TestClient
 from app import create_app
-from database import BaseTable, SessionLocal, engine, get_db
-
-# Dependency override
-def override_get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
+from database import BaseTable, engine
 
 @pytest.fixture(scope="session")
 def app():
     app = create_app()
-    app.dependency_overrides[get_db] = override_get_db
     return app
 
 @pytest.fixture(scope="function")

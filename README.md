@@ -5,7 +5,7 @@ The widget appears as a side-panel in the browser
 
 See the image below
 
-![alt text](/project-demo.png)
+![alt text](/project-demo.jpg)
 
 
 

@@ -1,18 +1,15 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from database import inject_db
+from decorators import inject_db
 from validators import PageVisit
 from models import  SiteVisit
 
 class SiteVisitRepo:
     @staticmethod
-    @inject_db
-    def save_page_visit(page_visit: PageVisit, db):
-        db_visit = SiteVisit(**page_visit.model_dump())
-        db.add(db_visit)
-        db.commit()
-        db.refresh(db_visit)
-        return db_visit
+    def save_page_visit(page_visit: PageVisit):
+        new_site_visit = SiteVisit(**page_visit.model_dump())
+        new_site_visit.save_to_db()
+        return new_site_visit
 
     @staticmethod
     @inject_db

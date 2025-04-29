@@ -2,8 +2,6 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from repo import SiteVisitRepo
 from validators import PageVisit, PageVisitResponse
-
-
 router = APIRouter()
 
 @router.get('/')
@@ -26,7 +24,9 @@ def return_page_visits(url: str):
     try:
         visits =  SiteVisitRepo.retrieve_page_page_visits(url)
         return [PageVisitResponse.model_validate(visit) for visit in visits]
-    except:
+    except Exception as e:
+        print(e)
+        print(e.with_traceback())
         return JSONResponse(content={'message': "Unknown error occured"}, status_code=500)
         
 
