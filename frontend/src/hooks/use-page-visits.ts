@@ -51,6 +51,18 @@ export const usePageVisits = () => {
     }
   }, []);
 
+  const clearAllPageHistory = useCallback(async () => {
+    const clearHistoryRes = await fetch(
+      `${SITE_STATS_API_HOST}/api/page/clear-history`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (clearHistoryRes.ok) {
+      setVisitHistory([]);
+    }
+  }, []);
   useEffect(() => {
     fetchCurrentTabData();
 
@@ -93,6 +105,7 @@ export const usePageVisits = () => {
   return {
     loading,
     error,
+    clearAllPageHistory,
     fetchCurrentTabData,
     visitHistory,
     pageMetrics,

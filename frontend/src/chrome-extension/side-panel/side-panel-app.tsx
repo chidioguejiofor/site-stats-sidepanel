@@ -5,8 +5,14 @@ import { Spinner } from "./components/spinner";
 import EmptyStateWithRetry from "./components/empty-state";
 
 export function SidePanelApp() {
-  const { loading, pageMetrics, error, visitHistory, fetchCurrentTabData } =
-    usePageVisits();
+  const {
+    loading,
+    pageMetrics,
+    error,
+    visitHistory,
+    fetchCurrentTabData,
+    clearAllPageHistory,
+  } = usePageVisits();
 
   if (loading) {
     return (
@@ -36,6 +42,14 @@ export function SidePanelApp() {
         imageCount={pageMetrics.imageCount}
         lastVisit={new Date(pageMetrics.lastVisit as string)}
       />
+      <div className="container">
+        <button
+          className="h-8 bg-red-400 text-white font-bold cursor-pointer rounded-lg"
+          onClick={clearAllPageHistory}
+        >
+          Clear Page History
+        </button>
+      </div>
 
       <div className="container">
         <h2 className="text-blue-600 text-2xl text-center mb-3 font-bold">
