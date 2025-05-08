@@ -21,6 +21,13 @@ class SiteVisitRepo:
         ).all()        
         
         return visits
+    
+
+    @staticmethod
+    @inject_db
+    def delete_all_page_visits(db: Session):
+        db.query(SiteVisit).delete()
+        db.commit()
 
     @classmethod
     def get_lastest_page_visit(cls, url):

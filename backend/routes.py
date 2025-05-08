@@ -19,6 +19,7 @@ def save_page_visit(page_visit: PageVisit):
 
 
 
+
 @router.get('/api/page/visits')
 def return_page_visits(url: str):
     try:
@@ -28,7 +29,16 @@ def return_page_visits(url: str):
         print(e)
         print(e.with_traceback())
         return JSONResponse(content={'message': "Unknown error occured"}, status_code=500)
-        
+
+@router.delete('/api/page/clear-history', status_code=200)
+def delete_all_page_visits():
+    try:
+        SiteVisitRepo.delete_all_page_visits()
+        return JSONResponse(content={'status': "ok"})      
+    except Exception as e:
+        print(e)
+        print(e.with_traceback())
+        return JSONResponse(content={'message': "Unknown error occured"}, status_code=500)      
 
 @router.get('/api/page/current/metrics')
 def return_latest_page_metris(url: str):
